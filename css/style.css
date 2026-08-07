@@ -1,0 +1,110 @@
+:root {
+  --app-primary: #0d6efd;
+  --app-bg: #f4f7fb;
+  --app-card: #ffffff;
+  --app-text: #212529;
+}
+
+[data-theme="dark"] {
+  --app-bg: #121820;
+  --app-card: #1d2733;
+  --app-text: #f1f3f5;
+}
+
+body {
+  background: var(--app-bg);
+  color: var(--app-text);
+  min-height: 100vh;
+}
+
+.card,
+.stat-card {
+  background-color: var(--app-card);
+  color: var(--app-text);
+  border: 0;
+}
+
+.navbar .nav-link {
+  cursor: pointer;
+}
+
+.stat-card {
+  min-height: 130px;
+  padding: 1.1rem;
+  border-radius: 0.75rem;
+  position: relative;
+  box-shadow: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.1);
+}
+
+.stat-card span,
+.stat-card small {
+  display: block;
+  color: #6c757d;
+}
+
+.stat-card strong {
+  display: inline-block;
+  font-size: 2rem;
+  margin-top: 0.5rem;
+}
+
+.stat-card > i {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  font-size: 2rem;
+  color: var(--app-primary);
+  opacity: 0.75;
+}
+
+.table {
+  --bs-table-bg: transparent;
+  color: var(--app-text);
+}
+
+.badge-classification {
+  white-space: nowrap;
+  font-size: 0.78rem;
+}
+
+.class-normal {
+  background: #198754;
+}
+
+.class-elevated {
+  background: #ffc107;
+  color: #212529;
+}
+
+.class-stage1 {
+  background: #fd7e14;
+}
+
+.class-stage2 {
+  background: #dc3545;
+}
+
+.class-crisis {
+  background: #6f1d1b;
+}
+
+.chart-container {
+  position: relative;
+  height: 350px;
+}
+
+.form-control,
+.form-select {
+  background-color: var(--app-card);
+  color: var(--app-text);
+}
+
+@media (max-width: 576px) {
+  .chart-container {
+    height: 280px;
+  }
+
+  .table {
+    font-size: 0.85rem;
+  }
+}
