@@ -19,7 +19,7 @@ import {
 
 let profile = null;
 let measurements = [];
-const APP_BUILD = "2026-08-11-v8";
+const APP_BUILD = "2026-08-11-v9";
 const APP_BUILD_KEY = "minhaPressao.appBuild";
 
 const $ = selector => document.querySelector(selector);

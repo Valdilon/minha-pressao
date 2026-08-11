@@ -1,4 +1,4 @@
-const CACHE_NAME = "minha-pressao-v7";
+const CACHE_NAME = "minha-pressao-v8";
 
 const STATIC_FILES = [
   "./",
