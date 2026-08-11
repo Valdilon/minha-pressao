@@ -28,6 +28,28 @@ body {
   cursor: pointer;
 }
 
+#menuPrincipal {
+  position: relative;
+}
+
+.menu-version {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.72rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 991.98px) {
+  #menuPrincipal {
+    padding-bottom: 1.15rem;
+  }
+
+  .menu-version {
+    position: absolute;
+    right: 0;
+    bottom: 0.2rem;
+  }
+}
+
 .stat-card {
   min-height: 130px;
   padding: 1.1rem;

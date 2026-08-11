@@ -1,4 +1,4 @@
-const CACHE_NAME = "minha-pressao-v3";
+const CACHE_NAME = "minha-pressao-v7";
 
 const STATIC_FILES = [
   "./",
@@ -9,6 +9,7 @@ const STATIC_FILES = [
   "./js/charts.js",
   "./js/export.js",
   "./manifest.json",
+  "./assets/docs/Manual_do_Usuario_Minha_Pressao.pdf",
   "./assets/icons/icon-192.svg",
   "./assets/icons/icon-512.svg",
 

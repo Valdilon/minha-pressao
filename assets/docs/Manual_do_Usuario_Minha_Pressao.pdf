@@ -1,0 +1,105 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1513 >>
+stream
+BT
+/F1 12 Tf
+50 800 Td
+(Manual do Usuario - Minha Pressao) Tj
+0 -16 Td
+(Versao de teste:) Tj
+0 -16 Td
+(https://valdilon.github.io/minha-pressao/) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(1\) Objetivo) Tj
+0 -16 Td
+(Registrar e acompanhar pressao sistolica, diastolica e frequencia cardiaca.) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(2\) Primeiro acesso) Tj
+0 -16 Td
+(- Abra o link de teste) Tj
+0 -16 Td
+(- Va em Perfil, preencha os dados e salve) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(3\) Nova afericao) Tj
+0 -16 Td
+(- Informe sistolica, diastolica, frequencia, data/hora e observacao \(opcional\)) Tj
+0 -16 Td
+(- Salve para atualizar Dashboard, Historico e Graficos) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(4\) Historico e graficos) Tj
+0 -16 Td
+(- Filtre por periodo) Tj
+0 -16 Td
+(- Edite ou exclua registros) Tj
+0 -16 Td
+(- Acompanhe a evolucao nos graficos) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(5\) Backup e restauracao) Tj
+0 -16 Td
+(- Exporte em XLSX, PDF e JSON) Tj
+0 -16 Td
+(- Importe JSON para restaurar dados) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(6\) Instalar como app) Tj
+0 -16 Td
+(- Desktop: icone de instalacao no Chrome/Edge) Tj
+0 -16 Td
+(- Android: menu > Instalar app/Adicionar a tela inicial) Tj
+0 -16 Td
+(- iPhone: Safari > Compartilhar > Adicionar a Tela de Inicio) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(7\) Privacidade) Tj
+0 -16 Td
+(- Dados salvos localmente no navegador) Tj
+0 -16 Td
+(- Limpeza do navegador pode apagar registros) Tj
+0 -16 Td
+(- Faca backup JSON periodicamente) Tj
+0 -16 Td
+() Tj
+0 -16 Td
+(Aviso: este app nao substitui orientacao medica.) Tj
+0 -16 Td
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1876
+%%EOF

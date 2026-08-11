@@ -19,7 +19,7 @@ import {
 
 let profile = null;
 let measurements = [];
-const APP_BUILD = "2026-08-07-v4";
+const APP_BUILD = "2026-08-11-v8";
 const APP_BUILD_KEY = "minhaPressao.appBuild";
 
 const $ = selector => document.querySelector(selector);
@@ -35,6 +35,7 @@ async function init() {
   bindFilters();
   bindExports();
   bindTheme();
+  renderAppVersionLabel();
 
   setCurrentDateTime();
   await loadData();
@@ -167,6 +168,13 @@ function bindTheme() {
     localStorage.setItem("theme", next);
     updateThemeIcon(next);
   });
+}
+
+function renderAppVersionLabel() {
+  const label = $("#appVersionLabel");
+  if (!label) return;
+
+  label.textContent = APP_BUILD;
 }
 
 function updateThemeIcon(theme) {
