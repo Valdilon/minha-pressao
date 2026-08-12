@@ -89,11 +89,15 @@ body {
   font-size: 0.78rem;
 }
 
-.class-normal {
+.class-otima {
   background: #198754;
 }
 
-.class-elevated {
+.class-normal {
+  background: #0d6efd;
+}
+
+.class-prehypertension {
   background: #ffc107;
   color: #212529;
 }
@@ -106,8 +110,17 @@ body {
   background: #dc3545;
 }
 
-.class-crisis {
+.class-stage3 {
   background: #6f1d1b;
+}
+
+.classification-table {
+  font-size: 0.95rem;
+}
+
+.classification-table th,
+.classification-table td {
+  vertical-align: middle;
 }
 
 .chart-container {

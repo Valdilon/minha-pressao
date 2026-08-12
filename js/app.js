@@ -378,24 +378,16 @@ function updateImcPreview() {
 }
 
 function classifyPressure(systolic, diastolic) {
-  /*
-   * Classificação baseada nas categorias usuais da AHA para adultos:
-   * Normal: menor que 120 e menor que 80
-   * Elevada: sistólica 120–129 e diastólica menor que 80
-   * Estágio 1: sistólica 130–139 ou diastólica 80–89
-   * Estágio 2: sistólica >= 140 ou diastólica >= 90
-   * Crise: sistólica > 180 e/ou diastólica > 120
-   */
-  if (systolic > 180 || diastolic > 120) {
+  if (systolic >= 180 || diastolic >= 110) {
     return {
-      label: "Crise hipertensiva",
-      className: "class-crisis",
+      label: "Hipertensão estágio 3",
+      className: "class-stage3",
       icon: "exclamation-octagon",
       warning: true
     };
   }
 
-  if (systolic >= 140 || diastolic >= 90) {
+  if (systolic >= 160 || diastolic >= 100) {
     return {
       label: "Hipertensão estágio 2",
       className: "class-stage2",
@@ -404,10 +396,7 @@ function classifyPressure(systolic, diastolic) {
     };
   }
 
-  if (
-    (systolic >= 130 && systolic <= 139) ||
-    (diastolic >= 80 && diastolic <= 89)
-  ) {
+  if (systolic >= 140 || diastolic >= 90) {
     return {
       label: "Hipertensão estágio 1",
       className: "class-stage1",
@@ -416,18 +405,27 @@ function classifyPressure(systolic, diastolic) {
     };
   }
 
-  if (systolic >= 120 && systolic <= 129 && diastolic < 80) {
+  if (systolic >= 130 || diastolic >= 85) {
     return {
-      label: "Elevada",
-      className: "class-elevated",
+      label: "Pré-hipertensão",
+      className: "class-prehypertension",
       icon: "arrow-up-circle",
       warning: false
     };
   }
 
+  if (systolic >= 120 || diastolic >= 80) {
+    return {
+      label: "Normal",
+      className: "class-normal",
+      icon: "check-circle",
+      warning: false
+    };
+  }
+
   return {
-    label: "Normal",
-    className: "class-normal",
+    label: "Ótima",
+    className: "class-otima",
     icon: "check-circle",
     warning: false
   };
