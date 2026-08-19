@@ -19,8 +19,8 @@ import {
 
 let profile = null;
 let measurements = [];
-const APP_VERSION = "1.1.0";
-const APP_BUILD = "2026-08-19-v18";
+const APP_VERSION = "1.2.1";
+const APP_BUILD = "2026-08-19-v20";
 const APP_BUILD_KEY = "minhaPressao.appBuild";
 
 const $ = selector => document.querySelector(selector);

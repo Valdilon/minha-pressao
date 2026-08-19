@@ -30,14 +30,27 @@
         Minha Pressão
       </a>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#menuPrincipal"
-        aria-label="Abrir menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div class="d-flex align-items-center gap-2 order-lg-2">
+        <button
+          id="btnHelp"
+          class="btn btn-outline-light btn-sm"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#helpModal"
+          title="Ajuda"
+          aria-label="Ajuda">
+          <i class="bi bi-question-circle"></i>
+        </button>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#menuPrincipal"
+          aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
 
       <div class="collapse navbar-collapse" id="menuPrincipal">
         <ul class="navbar-nav ms-auto">
@@ -502,13 +515,6 @@
               <button class="btn btn-primary" type="submit">
                 <i class="bi bi-check-lg"></i> Salvar perfil
               </button>
-
-              <a
-                class="btn btn-outline-secondary"
-                href="assets/docs/Manual_do_Usuario_Minha_Pressao.pdf"
-                download="Manual_do_Usuario_Minha_Pressao.pdf">
-                <i class="bi bi-download"></i> Baixar manual (PDF)
-              </a>
             </div>
           </form>
         </div>
@@ -519,6 +525,51 @@
   <footer class="container text-center text-muted small py-4">
     Minha Pressão — uso pessoal. Não substitui orientação médica.
   </footer>
+
+  <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="helpModalLabel">Como usar o Minha Pressão</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            <strong>Minha Pressão</strong> é um aplicativo pessoal para controle de pressão arterial e frequência
+            cardíaca, que funciona totalmente no seu dispositivo (sem servidor), podendo ser instalado e usado
+            offline.
+          </p>
+
+          <h3 class="h6 fw-bold mt-4">Dashboard</h3>
+          <p>Mostra o resumo das suas medições: total de registros, médias e as últimas aferições, além da tabela de referência de classificação da pressão arterial.</p>
+
+          <h3 class="h6 fw-bold mt-4">Nova aferição</h3>
+          <p>Registre sistólica, diastólica e frequência cardíaca. A classificação clínica é calculada automaticamente enquanto você digita.</p>
+
+          <h3 class="h6 fw-bold mt-4">Histórico</h3>
+          <p>Consulte, filtre por período, ordene, edite ou exclua aferições já registradas.</p>
+
+          <h3 class="h6 fw-bold mt-4">Gráficos</h3>
+          <p>Visualize a evolução das suas medições ao longo do tempo.</p>
+
+          <h3 class="h6 fw-bold mt-4">Perfil</h3>
+          <p>Cadastre seus dados pessoais (nome, sexo, data de nascimento, peso e altura). A idade e o IMC são calculados automaticamente.</p>
+
+          <h3 class="h6 fw-bold mt-4">Exportar e importar</h3>
+          <p>Exporte seus dados em Excel, PDF ou backup em JSON, e importe um backup a qualquer momento na tela de Perfil.</p>
+
+          <div class="mt-4 pt-3 border-top text-center">
+            <a
+              class="btn btn-outline-primary"
+              href="assets/docs/Manual_do_Usuario_Minha_Pressao.pdf"
+              download="Manual_do_Usuario_Minha_Pressao.pdf">
+              <i class="bi bi-download"></i> Baixar manual (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
