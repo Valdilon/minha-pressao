@@ -19,8 +19,8 @@ import {
 
 let profile = null;
 let measurements = [];
-const APP_VERSION = "1.0.2";
-const APP_BUILD = "2026-08-19-v17";
+const APP_VERSION = "1.1.0";
+const APP_BUILD = "2026-08-19-v18";
 const APP_BUILD_KEY = "minhaPressao.appBuild";
 
 const $ = selector => document.querySelector(selector);
@@ -489,7 +489,7 @@ function classifyPressure(systolic, diastolic) {
     };
   }
 
-  if (systolic >= 130 || diastolic >= 85) {
+  if (systolic >= 120 || diastolic >= 80) {
     return {
       label: "Pré-hipertensão",
       className: "class-prehypertension",
@@ -498,18 +498,9 @@ function classifyPressure(systolic, diastolic) {
     };
   }
 
-  if (systolic >= 120 || diastolic >= 80) {
-    return {
-      label: "Normal",
-      className: "class-normal",
-      icon: "check-circle",
-      warning: false
-    };
-  }
-
   return {
-    label: "Ótima",
-    className: "class-otima",
+    label: "PA normal",
+    className: "class-normal",
     icon: "check-circle",
     warning: false
   };
