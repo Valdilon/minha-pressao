@@ -25,6 +25,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Atualizar versão de cache/build
+        run: |
+          VERSION="$(date -u +'%Y-%m-%d')-${GITHUB_SHA::7}"
+          sed -i "s/const CACHE_NAME = \".*\";/const CACHE_NAME = \"minha-pressao-${VERSION}\";/" service-worker.js
+          sed -i "s/const APP_BUILD = \".*\";/const APP_BUILD = \"${VERSION}\";/" js/app.js
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

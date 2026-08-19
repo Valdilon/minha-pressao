@@ -134,6 +134,52 @@ body {
   color: var(--app-text);
 }
 
+.classification-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.classification-window {
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 0.75rem;
+  background-color: var(--app-card);
+  color: var(--app-text);
+}
+
+.classification-window-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.classification-window-body {
+  padding: 1.25rem;
+}
+
+.update-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--app-primary);
+  color: #fff;
+  text-align: center;
+}
+
 @media (max-width: 576px) {
   .chart-container {
     height: 280px;

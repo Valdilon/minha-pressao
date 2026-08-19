@@ -80,6 +80,12 @@
     </div>
   </nav>
 
+  <div id="updateBanner" class="update-banner d-none">
+    <i class="bi bi-arrow-repeat"></i>
+    Nova versão disponível.
+    <button id="btnUpdateNow" type="button" class="btn btn-sm btn-light ms-2">Atualizar agora</button>
+  </div>
+
   <main class="container py-4">
     <div id="alertContainer" aria-live="polite"></div>
 
@@ -154,66 +160,75 @@
         Em caso de sintomas ou valores muito elevados, procure atendimento.
       </div>
 
-      <div class="card shadow-sm mt-4">
-        <div class="card-header fw-bold">
-          Classificação da pressão arterial (adultos ≥ 18 anos)
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered align-middle classification-table">
-              <thead>
-                <tr>
-                  <th>Classificação</th>
-                  <th>Pressão sistólica (mmHg)</th>
-                  <th>Pressão diastólica (mmHg)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Ótima</strong></td>
-                  <td>&lt; 120</td>
-                  <td>&lt; 80</td>
-                </tr>
-                <tr>
-                  <td><strong>Normal</strong></td>
-                  <td>120–129</td>
-                  <td>80–84</td>
-                </tr>
-                <tr>
-                  <td><strong>Pré-hipertensão</strong></td>
-                  <td>130–139</td>
-                  <td>85–89</td>
-                </tr>
-                <tr>
-                  <td><strong>Hipertensão Estágio 1</strong></td>
-                  <td>140–159</td>
-                  <td>90–99</td>
-                </tr>
-                <tr>
-                  <td><strong>Hipertensão Estágio 2</strong></td>
-                  <td>160–179</td>
-                  <td>100–109</td>
-                </tr>
-                <tr>
-                  <td><strong>Hipertensão Estágio 3</strong></td>
-                  <td>≥ 180</td>
-                  <td>≥ 110</td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="d-flex justify-content-end mt-4">
+        <button id="btnClassificationTable" class="btn btn-outline-primary" type="button">
+          <i class="bi bi-table"></i> Tabela de referência
+        </button>
+      </div>
+
+      <div id="classificationOverlay" class="classification-overlay d-none">
+        <div class="classification-window shadow">
+          <div class="classification-window-header d-flex justify-content-between align-items-center">
+            <span class="fw-bold">Classificação da pressão arterial (adultos ≥ 18 anos)</span>
+            <button id="btnCloseClassificationTable" type="button" class="btn-close" aria-label="Fechar"></button>
           </div>
+          <div class="classification-window-body">
+            <div class="table-responsive">
+              <table class="table table-bordered align-middle classification-table">
+                <thead>
+                  <tr>
+                    <th>Classificação</th>
+                    <th>Pressão sistólica (mmHg)</th>
+                    <th>Pressão diastólica (mmHg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Ótima</strong></td>
+                    <td>&lt; 120</td>
+                    <td>&lt; 80</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Normal</strong></td>
+                    <td>120–129</td>
+                    <td>80–84</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pré-hipertensão</strong></td>
+                    <td>130–139</td>
+                    <td>85–89</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hipertensão Estágio 1</strong></td>
+                    <td>140–159</td>
+                    <td>90–99</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hipertensão Estágio 2</strong></td>
+                    <td>160–179</td>
+                    <td>100–109</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Hipertensão Estágio 3</strong></td>
+                    <td>≥ 180</td>
+                    <td>≥ 110</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-          <ul class="small mb-3 ps-3">
-            <li>A classificação considera o maior valor entre sistólica e diastólica para definir o estágio.</li>
-            <li>Para diagnóstico de hipertensão, são necessárias múltiplas medidas em diferentes ocasiões, preferencialmente com confirmação por MAPA ou MRPA.</li>
-            <li>A tabela acima é válida para medidas realizadas em consultório em adultos a partir de 18 anos.</li>
-          </ul>
+            <ul class="small mb-3 ps-3">
+              <li>A classificação considera o maior valor entre sistólica e diastólica para definir o estágio.</li>
+              <li>Para diagnóstico de hipertensão, são necessárias múltiplas medidas em diferentes ocasiões, preferencialmente com confirmação por MAPA ou MRPA.</li>
+              <li>A tabela acima é válida para medidas realizadas em consultório em adultos a partir de 18 anos.</li>
+            </ul>
 
-          <div class="mt-4">
-            <h2 class="h6 fw-bold mb-2">Fontes</h2>
-            <ol class="mb-0 ps-3 small">
-              <li>Sociedade Brasileira de Cardiologia (SBC) – Diretrizes Brasileiras de Hipertensão Arterial (2020).</li>
-            </ol>
+            <div class="mt-4">
+              <h2 class="h6 fw-bold mb-2">Fontes</h2>
+              <ol class="mb-0 ps-3 small">
+                <li>Sociedade Brasileira de Cardiologia (SBC) – Diretrizes Brasileiras de Hipertensão Arterial (2020).</li>
+              </ol>
+            </div>
           </div>
         </div>
       </div>
@@ -460,8 +475,13 @@
               </div>
 
               <div class="col-md-3">
+                <label for="birthDate" class="form-label">Data de nascimento</label>
+                <input type="date" class="form-control" id="birthDate">
+              </div>
+
+              <div class="col-md-3">
                 <label for="age" class="form-label">Idade</label>
-                <input type="number" class="form-control" id="age" min="1" max="120" required>
+                <input type="text" class="form-control" id="age" readonly>
               </div>
 
               <div class="col-md-3">

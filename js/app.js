@@ -19,7 +19,8 @@ import {
 
 let profile = null;
 let measurements = [];
-const APP_BUILD = "2026-08-11-v9";
+const APP_VERSION = "1.0.2";
+const APP_BUILD = "2026-08-19-v17";
 const APP_BUILD_KEY = "minhaPressao.appBuild";
 
 const $ = selector => document.querySelector(selector);
@@ -35,17 +36,61 @@ async function init() {
   bindFilters();
   bindExports();
   bindTheme();
+  bindClassificationTable();
   renderAppVersionLabel();
 
   setCurrentDateTime();
   await loadData();
 
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js", {
-      updateViaCache: "none"
+  registerServiceWorker();
+}
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+
+  navigator.serviceWorker.register("./service-worker.js", { updateViaCache: "none" })
+    .then(registration => {
+      registration.addEventListener("updatefound", () => {
+        const newWorker = registration.installing;
+        if (!newWorker) return;
+
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+            showUpdateBanner(registration);
+          }
+        });
+      });
     })
-      .catch(error => console.warn("Service Worker:", error));
-  }
+    .catch(error => console.warn("Service Worker:", error));
+
+  let reloading = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (reloading) return;
+    reloading = true;
+    location.reload();
+  });
+}
+
+function showUpdateBanner(registration) {
+  const banner = $("#updateBanner");
+  const button = $("#btnUpdateNow");
+
+  banner.classList.remove("d-none");
+  button.addEventListener("click", () => {
+    registration.waiting?.postMessage({ type: "SKIP_WAITING" });
+  }, { once: true });
+}
+
+function bindClassificationTable() {
+  const overlay = $("#classificationOverlay");
+  const toggleBtn = $("#btnClassificationTable");
+  const closeBtn = $("#btnCloseClassificationTable");
+
+  toggleBtn.addEventListener("click", () => overlay.classList.toggle("d-none"));
+  closeBtn.addEventListener("click", () => overlay.classList.add("d-none"));
+  overlay.addEventListener("click", event => {
+    if (event.target === overlay) overlay.classList.add("d-none");
+  });
 }
 
 async function ensureFreshClientState() {
@@ -124,6 +169,8 @@ function bindForms() {
     $(`#${id}`).addEventListener("input", updateImcPreview);
   });
 
+  $("#birthDate").addEventListener("input", updateAgePreview);
+
   ["systolic", "diastolic", "heartRate"].forEach(id => {
     $(`#${id}`).addEventListener("input", updateClassificationPreview);
   });
@@ -174,7 +221,9 @@ function renderAppVersionLabel() {
   const label = $("#appVersionLabel");
   if (!label) return;
 
-  label.textContent = APP_BUILD;
+  const buildDate = APP_BUILD.slice(0, 10);
+  const buildTime = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  label.textContent = `${APP_VERSION} - ${buildDate} ${buildTime}`;
 }
 
 function updateThemeIcon(theme) {
@@ -190,10 +239,41 @@ function populateProfileForm() {
 
   $("#fullName").value = profile.fullName || "";
   $("#sex").value = profile.sex || "";
-  $("#age").value = profile.age || "";
+  $("#birthDate").value = profile.birthDate || "";
   $("#weight").value = profile.weight || "";
   $("#height").value = profile.height || "";
   updateImcPreview();
+  updateAgePreview();
+}
+
+function calculateAge(birthDateValue) {
+  if (!birthDateValue) return "";
+
+  const birthDate = new Date(birthDateValue);
+  if (Number.isNaN(birthDate.getTime())) return "";
+
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const hasHadBirthdayThisYear =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+
+  if (!hasHadBirthdayThisYear) age--;
+  return age >= 0 ? age : "";
+}
+
+function updateAgePreview() {
+  const ageField = $("#age");
+  if (!ageField) return;
+
+  const age = calculateAge($("#birthDate")?.value);
+  if (age !== "") {
+    ageField.value = `${age} anos`;
+  } else if (profile?.age) {
+    ageField.value = `${profile.age} anos`;
+  } else {
+    ageField.value = "";
+  }
 }
 
 async function handleProfileSubmit(event) {
@@ -206,10 +286,14 @@ async function handleProfileSubmit(event) {
     return;
   }
 
+  const birthDateValue = $("#birthDate").value;
+  const calculatedAge = calculateAge(birthDateValue);
+
   profile = {
     fullName: $("#fullName").value,
     sex: $("#sex").value,
-    age: $("#age").value,
+    birthDate: birthDateValue,
+    age: calculatedAge !== "" ? calculatedAge : (profile?.age || ""),
     weight: $("#weight").value,
     height: $("#height").value,
     bmi: calculateImc($("#weight").value, $("#height").value)
